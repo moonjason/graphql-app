@@ -5,7 +5,7 @@ const {
     GraphQLObjectType, 
     GraphQLString, 
     GraphQLSchema, 
-    GraphQLID 
+    GraphQLID //flexible data type to accessing ids
 } = graphql; //destructuring grabs that GraphQLObjectType from graphql requirement
 
 // dummy data
