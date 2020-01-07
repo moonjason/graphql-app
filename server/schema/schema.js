@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const _ = require('lodash');
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql; //destructuring grabs that GraphQLObjectType from graphql requirement
 
@@ -27,7 +28,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 //code to get data from db / other source 
                 // parent comes in when we look at relationships between data
-                args.id 
+                return _.find(books, { id: args.id });
             }
         }
     } // doesn't need to be in a function cuz we don't care about order
