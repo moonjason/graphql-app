@@ -7,7 +7,8 @@ const schema = require('./schema/schema');
 const app = express();
 
 app.use('/graphql', graphqlHTTP({
-    schema // same as schema: schema (ES6 ftw)
+    schema, // same as schema: schema (ES6 ftw)
+    graphiql: true
 })) // middleware for graphql endpoints
 
 app.listen(4000, () => {
