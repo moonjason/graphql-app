@@ -6,15 +6,19 @@ const {
     GraphQLString, 
     GraphQLSchema, 
     GraphQLID, //flexible data type to accessing ids
-    GraphQLInt
+    GraphQLInt,
+    GraphQLList
 } = graphql; //destructuring grabs that GraphQLObjectType from graphql requirement
 
 // dummy data
 const books = [
     {name: 'Name of the Wind', genre: 'Fantasy', id: '1', authorId: '1'},
     {name: 'The Final Empire', genre: 'Fantasy', id: '2', authorId: '2'},
-    {name: 'The Long Earth', genre: 'Sci-Fi', id: '3', authorId: '3'}
-]
+    {name: 'The Long Earth', genre: 'Sci-Fi', id: '3', authorId: '3'},
+    {name: 'The Hero of Ages', genre: 'Fantasy', id: '4', authorId: '2'},
+    {name: 'The Colour of Magic', genre: 'Fantasy', id: '5', authorId: '3'},
+    {name: 'The Light Fantastic', genre: 'Fantasy', id: '6', authorId: '3'}
+  ]
 
 const authors =  [
     {name: 'Patrick Rothfuss', age: 44, id:"1"},
@@ -24,7 +28,7 @@ const authors =  [
 
 const BookType = new GraphQLObjectType({
     name: 'Book',
-    fields: () => ({
+    fields: () => ({ // why do we wrap this around function? for relation types, these fields run once we the other Types are defined so no errors pop up
         id: {type: GraphQLID },
         name: {type: GraphQLString },
         genre: {type: GraphQLString },
@@ -43,7 +47,13 @@ const AuthorType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLID },
         name: {type: GraphQLString },
-        age: {type: GraphQLInt }
+        age: {type: GraphQLInt },
+        books: {
+            type: new GraphQLList(BookType), //GraphQl LIST of Booktype
+            resolve(parent, args){
+                return _.filter(books, {authorId: parent.id})
+            }
+        }
     }) // we do a function here to avoid reference errors when we have multiple types
 })
 
