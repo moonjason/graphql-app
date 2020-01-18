@@ -1,16 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://jasonMoon:<password>@graphql-practice-nt6ix.mongodb.net/test?retryWrites=true&w=majority";
+const connectionString = 'mongodb+srv://moonJason:test1234@graphql-practice-nt6ix.mongodb.net/test?retryWrites=true&w=majority'
 
-const client = new MongoClient(uri,{ useNewUrlParser: true , useUnifiedTopology: true } );
-
-client.connect(err => {
-    const collection = client.db("test").collection("devices");
-    console.log('conneccted')
-  // perform actions on the collection object
-    client.close();
-});
+mongoose.connect(connectionString, { useNewUrlParser: true,
+                                     useUnifiedTopology: true,
+                                     useCreateIndex: true,
+                                     useFindAndModify: false
+                                    });
 
 mongoose.connection.on('connected', () => {
 console.log(`Mongoose connected to ${connectionString}`);
