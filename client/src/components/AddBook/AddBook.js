@@ -1,16 +1,6 @@
 import React from 'react';
-import { gql } from 'apollo-boost'; // parse graph query language to javascript
 import { useQuery } from '@apollo/react-hooks'; //importing useQuery hook
-
-//queries
-const getAuthorsQuery = gql`
-    {
-        authors {
-            name
-            id
-        } 
-    }
-`;
+import { getAuthorsQuery } from '../../queries/queries';
 
 const AddBook = () => {
     const { loading, error, data } = useQuery(getAuthorsQuery);
