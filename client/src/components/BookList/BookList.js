@@ -13,14 +13,15 @@ const getBooksQuery = gql`
 `;
 
 const BookList = () => {
-    // const { loading, error, data } = useQuery(getBooksQuery);
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error :(</p>;
+    const { loading, error, data } = useQuery(getBooksQuery);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
 
-    // const { books } = data;
-    // const bookListItems = books.map( ({ id, name }) => {
-    //     return <li key={id}>{name}</li>;
-    // });
+    const { books } = data;
+    console.log(data)
+    const bookListItems = books.map( ({ id, name }) => {
+        return <li key={id}>{name}</li>;
+    });
   
     return (
         <div>
