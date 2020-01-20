@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks'; // react-apollo binds grap
 
 //components
 import BookList from './components/BookList/BookList'
+import AddBook from './components/AddBook/AddBook'
 
 // apollo client set up
 const client = new ApolloClient({
@@ -16,6 +17,7 @@ function App() {
       <div id="main">
         <h1>GraphQL Practice - Reading List</h1>
         <BookList/>
+        <AddBook/>
       </div>
     </ApolloProvider>
   );
