@@ -6,6 +6,8 @@ const app = express();
 
 require('./db/db');
 
+//allow cross origin requests
+
 // connect to mlab database
 // make sure to replace my db string & creds with your own
 

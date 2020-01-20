@@ -1,6 +1,6 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost' //package that bundles things that we need 
-import { ApolloProvider } from 'react-apollo'; // react-apollo binds graphql and React //enables us to get data from our end point {client} and injects it into React
+import { ApolloProvider } from '@apollo/react-hooks'; // react-apollo binds graphql and React //enables us to get data from our end point {client} and injects it into React
 
 //components
 import BookList from './components/BookList/BookList'
